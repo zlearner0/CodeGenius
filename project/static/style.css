@@ -1,0 +1,45 @@
+
+body {
+    margin: 0;
+    color: #000;
+    background-color: #d1cccce5;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+header{
+
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #ec763b;
+    margin:0;
+}
+
+.around-lu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}
+
+.around-lu li {
+    margin: 5px;
+}
+
+a {
+    text-decoration: none;
+    color:#000;
+}
+
+a:visited {
+    color: #000;
+  }
+
+a:hover {
+    color: #fff;
+}
+
+.container {
+    padding: 15px;
+}
