@@ -9,8 +9,7 @@ Email: *ahelmyeng1@gmail.com*
 ## Technologies
 * HTML.
 * CSS.
-* Javascript
-* Python3.
+* Python.
 
 ## Project Description
 * To have a website that serves and helps students, to reserve courses online.
