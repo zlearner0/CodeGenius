@@ -4,10 +4,15 @@ from project.models import User, Course, User_Course
 from project.forms import RegistrationForm, LoginForm
 from flask_login import login_user, current_user, logout_user, login_required
 
+
+
+
 @app.route('/home')
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', title='Home')
+
+
 
 @app.route('/register',  methods=['GET', 'POST'])
 def register():
@@ -21,5 +26,23 @@ def register():
              db.session.add(user)
              db.session.commit()
          flash(f'You Registered Successfully!')
-         return redirect(url_for('home'))
+         return redirect(url_for('login'))
     return render_template('register.html',title='Register',form=form)
+
+
+@app.route('/login',  methods=['GET', 'POST'])
+def login():
+
+    form = LoginForm()
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=True)
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('home'))
+        else:
+            flash('Login Unsuccessful. Please check email and password')
+
+    return render_template('login.html',title='Login',form=form)
