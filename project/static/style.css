@@ -43,3 +43,49 @@ a:hover {
 .container {
     padding: 15px;
 }
+
+.form-wrapper1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-wrapper2 {
+    background-color: #f6a278fe;
+    padding: 20px;
+    border-radius: 15px;
+    
+}
+
+.form-label {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.form-field{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-field-error{
+    color: red;
+}
+
+
+.form-btn {
+    color: #000;
+    background-color: #ec763b;
+    font-size: 1.2rem;
+}
+
+.flashed-msg {
+    text-align: center;
+    background-color: rgb(231, 231, 169);
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.home-text{
+    text-align: center;
+}
