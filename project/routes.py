@@ -13,6 +13,10 @@ def home():
     return render_template('home.html', title='Home')
 
 
+@app.route('/about')
+def about():
+    return render_template('about.html', title='About')
+
 
 @app.route('/register',  methods=['GET', 'POST'])
 def register():
@@ -46,3 +50,9 @@ def login():
             flash('Login Unsuccessful. Please check email and password')
 
     return render_template('login.html',title='Login',form=form)
+
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
