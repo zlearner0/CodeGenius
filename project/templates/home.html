@@ -2,6 +2,17 @@
 {% extends "layout.html" %}
 
     {% block container %}
-    <h1 class="home-text">Explore Your Programming Journey With Us</h1>
+    
+    <div class="wrappers">
+        <div class="wrapper1">
+            <!-- image set in css -->
+        </div>
+        <div class="wrapper2">
+            <h1><a href="{{ url_for('register') }}">Join Us</a></h1>
+            <h1>Ready to Unleash Your Inner CodeGenius?</h1>
+        </div>
+    </div>
+    <br>
+    <h1 class="home-text">Explore Your Programming Journey with CodeGenius</h1>
     {% endblock %}
     
