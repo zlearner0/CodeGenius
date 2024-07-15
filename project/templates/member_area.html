@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block container %}
+
+<h1>Member Area</h1>
+
+<h3 class="account-heading">Username: {{ current_user.username }}</h3>
+<p class="text-secondary">Email: {{ current_user.email }}</p>
+
+<hr>
+
+<h3>Check The Courses To Start Next Month:</h3>
+<form action="{{ url_for('save_courses') }}" method="post">
+    {% for course in courses %}
+    <div class="chkbx-line">
+        <input type="checkbox" name="course_checkbox" value="{{ course.title }}">
+           {{ course.title }}
+    </div>
+    {% endfor %}
+    <button class="save-courses" type="submit">Save Selected Courses</button>
+</form>
+
+{% endblock %}

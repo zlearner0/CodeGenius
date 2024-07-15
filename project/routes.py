@@ -56,3 +56,28 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+
+@app.route('/member_area')
+@login_required
+def member_area():
+    courses = Course.query.all()
+    user_courses = User_Course.query.filter(User_Course.the_user.has
+                                            (username=current_user.username)).all()
+    return render_template('member_area.html',title='Member', courses=courses,
+                            user_courses=user_courses)
+
+@app.route('/save_courses', methods=['POST'])
+def save_courses():
+    user_courses = User_Course.query.filter(User_Course.the_user.has
+                                            (username=current_user.username)).all()
+    courses_list = [ user_course.the_course.title for user_course in user_courses]
+    selected_courses = request.form.getlist('course_checkbox')
+    the_user = User.query.filter_by(username=current_user.username).first()
+    for course_name in selected_courses:
+            if course_name not in courses_list:
+                the_course = Course.query.filter_by(title=course_name).first()
+                user_course = User_Course(the_user=the_user,the_course=the_course)
+                db.session.add(user_course)
+    db.session.commit()
+    return redirect(url_for('member_area'))
