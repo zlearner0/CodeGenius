@@ -81,3 +81,16 @@ def save_courses():
                 db.session.add(user_course)
     db.session.commit()
     return redirect(url_for('member_area'))
+
+
+@app.route('/cancel_course')
+def cancel_course():
+    course_title = request.args.get('course')
+    if course_title:
+        the_course = Course.query.filter_by(title=course_title).first()
+        the_user = User.query.filter_by(username=current_user.username).first()
+        user_course = User_Course.query.filter_by(the_user=the_user, the_course=the_course).first()
+        if user_course:
+            db.session.delete(user_course)
+        db.session.commit()
+    return redirect(url_for('member_area'))

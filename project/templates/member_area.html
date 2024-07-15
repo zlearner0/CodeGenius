@@ -20,4 +20,17 @@
     <button class="save-courses" type="submit">Save Selected Courses</button>
 </form>
 
+<hr>
+
+<h3>The Courses You've Chosen:</h3>
+
+    {% if user_courses %}
+    {% for user_course in user_courses %}
+        <div class="chosen-course">
+        <p>{{user_course.the_course.title}}</p>
+        <a class="cencel-course" href="cancel_course?course={{user_course.the_course.title}}">Cancel</a> 
+        </div>
+    {% endfor %}
+    {% endif %}
+
 {% endblock %}
