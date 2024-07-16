@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block container %}
+
+<h1>Admin Area</h1>
+<h3 class="account-heading">Username: {{ current_user.username }}</h3>
+<p class="text-secondary">Email: {{ current_user.email }}</p>
+<hr>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<hr>
+
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>ID</th>
+        <th>Course Title</th>
+    </tr>
+    {% for course in courses %}
+    <tr>
+        <td>{{ course.id }}</td>
+        <td>{{ course.title }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+<hr>
+
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Course Title</th>
+        <th>Usernames</th>
+        <th>Count</th>
+    </tr>
+    {% for course in courses %}
+    <tr>
+        <td>{{ course.title }}</td>
+        <td>
+            {% for User_Course in course.x %}
+                {{ User_Course.the_user.username }}, 
+            {% endfor %}
+           
+        </td>
+        <td>{{ course.x|length }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+<tr>
+
+{% endblock %}
