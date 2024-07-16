@@ -11,19 +11,23 @@
 <body>
 
   <header>
-    <h3><a href="#">CodeGenius</a></h3>
+    <h3><a href="{{ url_for('landing_page') }}">CodeGenius</a></h3>
     <div>
       <ul class="around-lu">
         <li> <a href="{{ url_for('home') }}">Home</a></li>
-        <li> <a href="{{ url_for('about') }}">About</a></li>
+        <li> <a href="{{url_for('about')}}">About</a></li>
       </ul>
     </div>
 
     <div>
       {% if current_user.is_authenticated %}
       <ul class="around-lu">
-          <li> <a href="#">Member Area</a></li>
-        <li> <a href="{{ url_for('logout') }}">Logout</a></li>
+        {% if current_user.id == 5 %}
+          <li> <a href="{{url_for('admin')}}">Admin</a></li>
+        {% else %}
+          <li> <a href="{{url_for('member_area')}}">Member Area</a></li>
+        {% endif %}
+        <li> <a href="{{url_for('logout')}}">Logout</a></li>
       </ul>
       {% else %}
       <ul class="around-lu">
