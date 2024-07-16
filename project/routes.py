@@ -94,3 +94,18 @@ def cancel_course():
             db.session.delete(user_course)
         db.session.commit()
     return redirect(url_for('member_area'))
+
+
+@app.route('/admin')
+@login_required
+def admin():
+    users = User.query.all()
+    courses = Course.query.all()
+    users_courses = User_Course.query.all()
+    id = current_user.id
+    if id == 5:
+        return render_template('admin.html', title='Admin', users=users, courses=courses,
+                                users_courses=users_courses)
+    else:
+        flash('Admin privilege needed to access admin page')
+        return redirect(url_for('member_area'))
