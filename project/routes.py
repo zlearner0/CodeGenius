@@ -109,3 +109,8 @@ def admin():
     else:
         flash('Admin privilege needed to access admin page')
         return redirect(url_for('member_area'))
+    
+
+@app.route('/landing_page')
+def landing_page():
+    return render_template('landing_page.html')
